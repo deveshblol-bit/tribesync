@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { calculateTribeScore } from "@/utils/tribeScore";
 import type { TribeScoreResult } from "@/utils/tribeScore";
+import ShareButton from "@/components/ShareButton";
 
 interface AchievementEntry {
   id: string;
@@ -66,6 +67,9 @@ export default function AchievementTracker() {
             <ScoreBadge label="Total" value={score.total} />
             <ScoreBadge label="Fitness" value={score.fitnessScore} />
             <ScoreBadge label="Reading" value={score.readingScore} />
+          </div>
+          <div className="mt-4 flex justify-center">
+            <ShareButton tribeScore={score.total} />
           </div>
         </div>
       )}
