@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useAuth } from "@/lib/auth-context";
+import AchievementTracker from "@/components/AchievementTracker";
 
 export default function Home() {
   const { user, loading, signOut } = useAuth();
@@ -15,8 +16,8 @@ export default function Home() {
   }
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-background px-4">
-      <main className="flex flex-col items-center gap-6 text-center">
+    <div className="flex min-h-screen flex-col items-center bg-background px-4 py-12">
+      <main className="flex w-full max-w-2xl flex-col items-center gap-6 text-center">
         <h1 className="text-5xl font-bold tracking-tight text-foreground">
           TribeSync
         </h1>
@@ -53,6 +54,11 @@ export default function Home() {
               </Link>
             </>
           )}
+        </div>
+
+        {/* Achievement Tracker */}
+        <div className="mt-8 w-full">
+          <AchievementTracker />
         </div>
       </main>
     </div>
