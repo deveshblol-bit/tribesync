@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { Geist, Geist_Mono } from "next/font/google";
-import { AuthProvider } from "@/lib/auth-context";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import "./globals.css";
 
@@ -34,7 +33,7 @@ export default function RootLayout({
         <Suspense>
           <GoogleAnalytics />
         </Suspense>
-        <AuthProvider>{children}</AuthProvider>
+        {children}
       </body>
     </html>
   );
