@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { calculateTribeScore } from "@/utils/tribeScore";
 import type { TribeScoreResult } from "@/utils/tribeScore";
 import ShareButton from "@/components/ShareButton";
+import { trackEvent } from "@/lib/analytics";
 
 interface AchievementEntry {
   id: string;
@@ -28,11 +29,11 @@ export default function AchievementTracker() {
       })
       .then((data: AchievementEntry[]) => {
         setAchievements(data);
-        setScore(
-          calculateTribeScore(
-            data.map((a) => ({ type: a.type, value: a.value })),
-          ),
+        const result = calculateTribeScore(
+          data.map((a) => ({ type: a.type, value: a.value })),
         );
+        setScore(result);
+        trackEvent("view_tribe_score", "engagement", "score_loaded", result.total);
         setLoading(false);
       })
       .catch((err) => {

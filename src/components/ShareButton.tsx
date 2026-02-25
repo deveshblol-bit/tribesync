@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { trackEvent } from "@/lib/analytics";
 
 interface ShareButtonProps {
   tribeScore: number;
@@ -13,6 +14,7 @@ export default function ShareButton({ tribeScore }: ShareButtonProps) {
   const shareUrl = typeof window !== "undefined" ? window.location.origin : "";
 
   async function handleShare() {
+    trackEvent("share_score", "engagement", "share_button_click", tribeScore);
     if (navigator.share) {
       try {
         await navigator.share({
